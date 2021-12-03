@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Music Player</title>
+    <link
+      rel="icon"
+      href="https://www.google.com/s2/u/0/favicons?domain=spotify.com"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body class="flxcenter">
+    <div class="music-container">
+      <div class="music-container__content">
+        <!-- Music Description -->
+        <div class="music-info">
+          <div class="music-info__cover"></div>
+          <h3 class="music-info__name">Purpose</h3>
+          <span class="music-info__singer">Justin Bieber</span>
+        </div>
+        <!-- Audio Element -->
+        <audio id="audio"></audio>
+        <!-- Progress Bar changes Dynamically -->
+        <div class="progress-container">
+          <div class="progress-time">
+            <span class="currentTime">0:00</span>
+            <span class="duration">0:00</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progressbar-filler"></div>
+          </div>
+        </div>
+
+        <!-- Music Actions Button -->
+        <div class="music-actions">
+          <button id="prevbtn">
+            <i class="fa fa-backward" aria-hidden="true"></i>
+          </button>
+          <button id="playpausebtn">
+            <i class="fa fa-play" aria-hidden="true"></i>
+          </button>
+          <button id="nextbtn">
+            <i class="fa fa-forward" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
