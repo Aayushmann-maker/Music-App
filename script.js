@@ -17,7 +17,6 @@ const audioEl = document.getElementById("audio");
 // Tracking the Index of the Music Array
 let musicIndex = 0;
 let playing = false;
-let updateTimer;
 const musicArray = [
   {
     title: "Purpose",
@@ -52,13 +51,6 @@ const onMusicLoad = function (idx) {
   audioEl.src = `${idx.song}`;
   // Sets the Content to 0:00
   durationEl.textContent = "0:00";
-  updateTimer = setInterval(() => {
-    if (!Number.isNaN(audioEl.duration)) {
-      durationEl.textContent = getMinutesAndSecond(audioEl.duration);
-    } else {
-      durationEl.textContent = "0:00";
-    }
-  }, 1000);
 };
 
 // Plays the Song
@@ -107,7 +99,6 @@ const next = function () {
 
 // Helper function
 const pausePlayLoad = function () {
-  clearInterval(updateTimer);
   onMusicLoad(musicArray[musicIndex]);
   pauseSong();
   playSong();
@@ -118,13 +109,12 @@ const updateProgress = function (e) {
   const progress = (currentTime / duration) * 100;
   progressBarFiller.style.width = `${progress}%`;
 
-  if (!Number.isNaN(progress)) {
-    currentTimeEl.textContent = getMinutesAndSecond(
-      (currentTime / duration) * 100
-    );
+  if (!Number.isNaN(duration)) {
+    durationEl.textContent = getMinutesAndSecond(duration);
   } else {
-    currentTimeEl.textContent = "0:00";
+    durationEl.textContent = "0:00";
   }
+  currentTimeEl.textContent = getMinutesAndSecond(currentTime);
 };
 
 const setProgress = function (e) {
@@ -132,7 +122,8 @@ const setProgress = function (e) {
   const clickX = e.offsetX;
   const duration = audioEl.duration;
   audioEl.currentTime = (clickX / width) * duration;
-  currentTimeEl.textContent = getMinutesAndSecond((clickX / width) * duration);
+  const clickedCurrentMinute = getMinutesAndSecond((clickX / width) * duration);
+  currentTimeEl.textContent = clickedCurrentMinute;
 };
 
 // Event Handlers
@@ -145,3 +136,4 @@ audioEl.addEventListener("ended", next);
 
 // On Load
 onMusicLoad(musicArray[musicIndex]);
+
